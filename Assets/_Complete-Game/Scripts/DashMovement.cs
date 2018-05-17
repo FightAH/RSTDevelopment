@@ -8,7 +8,7 @@ namespace Completed
     {
 
         float dashDistance = 2f;
-        int dashFood;
+        int dashFood = 5;
 
         // Use this for initialization
         void Start()
@@ -18,42 +18,45 @@ namespace Completed
         // Update is called once per frame
         void Update()
         {
-
-            if (Input.GetKeyDown(KeyCode.W))
+            if (GameManager.instance.doingSetup == false)
             {
-                transform.Translate(new Vector2(0, 1) * dashDistance);
-                if(transform.position.y > 7 )
+                //If the player presses the key it will place the player 2 in front of the axis and deduct 5 food.
+                if (Input.GetKeyDown(KeyCode.W))
                 {
-                    transform.position = new Vector2(transform.position.x, 7);
+                    transform.Translate(new Vector2(0, 1) * dashDistance);
+                    if (transform.position.y > 7)
+                    {
+                        transform.position = new Vector2(transform.position.x, 7);
+                    }
+                    Player.food -= dashFood;
                 }
-                Player.food -= 5;
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                transform.Translate(new Vector2(0, -1) * dashDistance);
-                if (transform.position.y < 0)
+                if (Input.GetKeyDown(KeyCode.S))
                 {
-                    transform.position = new Vector2(transform.position.x, 0);
+                    transform.Translate(new Vector2(0, -1) * dashDistance);
+                    if (transform.position.y < 0)
+                    {
+                        transform.position = new Vector2(transform.position.x, 0);
+                    }
+                    Player.food -= dashFood;
                 }
-                Player.food -= 5;
-            }
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                transform.Translate(new Vector2(-1, 0) * dashDistance);
-                if (transform.position.x < 0)
+                if (Input.GetKeyDown(KeyCode.A))
                 {
-                    transform.position = new Vector2(0, transform.position.y);
+                    transform.Translate(new Vector2(-1, 0) * dashDistance);
+                    if (transform.position.x < 0)
+                    {
+                        transform.position = new Vector2(0, transform.position.y);
+                    }
+                    Player.food -= dashFood;
                 }
-                Player.food -= 5;
-            }
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                transform.Translate(new Vector2(1, 0) * dashDistance);
-                if (transform.position.x > 7)
+                if (Input.GetKeyDown(KeyCode.D))
                 {
-                    transform.position = new Vector2(7, transform.position.y);
+                    transform.Translate(new Vector2(1, 0) * dashDistance);
+                    if (transform.position.x > 7)
+                    {
+                        transform.position = new Vector2(7, transform.position.y);
+                    }
+                    Player.food -= dashFood;
                 }
-                Player.food -= 5;
             }
         }
     }

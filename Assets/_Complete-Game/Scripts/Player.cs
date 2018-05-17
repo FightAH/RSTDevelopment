@@ -20,6 +20,7 @@ namespace Completed
 		public AudioClip drinkSound1;				//1 of 2 Audio clips to play when player collects a soda object.
 		public AudioClip drinkSound2;				//2 of 2 Audio clips to play when player collects a soda object.
 		public AudioClip gameOverSound;				//Audio clip to play when player dies.
+        public GameObject restartButton;            //Restart button at the end.
 		
 		private Animator animator;					//Used to store a reference to the Player's animator component.
 		public static int food;                           //Used to store player food points total during level.
@@ -31,6 +32,9 @@ namespace Completed
 		//Start overrides the Start function of MovingObject
 		protected override void Start ()
 		{
+            //Set restart button to false.
+            restartButton.SetActive(false);
+
 			//Get a component reference to the Player's animator component
 			animator = GetComponent<Animator>();
 			
@@ -262,6 +266,9 @@ namespace Completed
 				
 				//Call the GameOver function of GameManager.
 				GameManager.instance.GameOver ();
+
+                //Set restart button to true.
+                restartButton.SetActive(true);
 			}
 		}
 	}

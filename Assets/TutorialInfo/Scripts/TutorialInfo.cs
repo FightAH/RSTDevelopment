@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 
 // Hi! This script presents the overlay info for our tutorial content, linking you back to the relevant page.
 public class TutorialInfo : MonoBehaviour 
 {
+
+    GameObject GameManager;
 
 	// allow user to choose whether to show this menu 
 	public bool showAtStart = true;
@@ -73,7 +76,7 @@ public class TutorialInfo : MonoBehaviour
 	// open the stored URL for this content in a web browser
 	public void LaunchTutorial()
 	{
-		Application.OpenURL (url);
+        Application.Quit();
 	}
 
 	// continue to play, by ensuring the preference is set correctly, the overlay is not active, 
@@ -91,4 +94,14 @@ public class TutorialInfo : MonoBehaviour
 		showAtStart = showAtStartToggle.isOn;
 		PlayerPrefs.SetInt(showAtStartPrefsKey, showAtStart ? 1 : 0);
 	}
+    //Restarts the game
+    public void RestartGame()
+    {
+        Completed.GameManager.instance.level = 0;
+        Completed.Player.food = 100;
+
+
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+    }
 }
