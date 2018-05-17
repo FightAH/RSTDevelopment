@@ -7,7 +7,7 @@ namespace Completed
     public class DashMovement : MonoBehaviour
     {
 
-        float dashDistance = 3f;
+        float dashDistance = 2f;
         int dashFood;
 
         // Use this for initialization
@@ -19,25 +19,41 @@ namespace Completed
         void Update()
         {
 
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 transform.Translate(new Vector2(0, 1) * dashDistance);
-                Player.food -= 10;
+                if(transform.position.y > 7 )
+                {
+                    transform.position = new Vector2(transform.position.x, 7);
+                }
+                Player.food -= 5;
             }
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 transform.Translate(new Vector2(0, -1) * dashDistance);
-                Player.food -= 10;
+                if (transform.position.y < 0)
+                {
+                    transform.position = new Vector2(transform.position.x, 0);
+                }
+                Player.food -= 5;
             }
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                transform.Translate(new Vector2(1, 0) * dashDistance);
-                Player.food -= 10;
-            }
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 transform.Translate(new Vector2(-1, 0) * dashDistance);
-                Player.food -= 10;
+                if (transform.position.x < 0)
+                {
+                    transform.position = new Vector2(0, transform.position.y);
+                }
+                Player.food -= 5;
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                transform.Translate(new Vector2(1, 0) * dashDistance);
+                if (transform.position.x > 7)
+                {
+                    transform.position = new Vector2(7, transform.position.y);
+                }
+                Player.food -= 5;
             }
         }
     }
