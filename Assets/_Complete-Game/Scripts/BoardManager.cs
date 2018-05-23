@@ -13,6 +13,7 @@ namespace Completed
 		[Serializable]
 		public class Count
 		{
+
 			public int minimum; 			//Minimum value for our Count class.
 			public int maximum; 			//Maximum value for our Count class.
 			
@@ -25,6 +26,7 @@ namespace Completed
 			}
 		}
 		
+        int randomExit;
 		
 		public int columns = 8; 										//Number of columns in our game board.
 		public int rows = 8;											//Number of rows in our game board.
@@ -148,9 +150,22 @@ namespace Completed
 			
 			//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 			LayoutObjectAtRandom (enemyTiles, enemyCount, enemyCount);
-			
-			//Instantiate the exit tile in the upper right hand corner of our game board
-			Instantiate (exit, new Vector3 (columns - 1, rows - 1, 0f), Quaternion.identity);
-		}
+
+            //Instantiate the exit tile in the upper right hand corner of our game board
+            randomExit = Random.Range(0, 3);
+            if (randomExit == 0 || randomExit == 3)
+            {
+                Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
+            }
+            if (randomExit == 1)
+            {
+                Instantiate(exit, new Vector3(columns - 1, rows - 8, 0f), Quaternion.identity);
+            }
+            if (randomExit == 2)
+            {
+                Instantiate(exit, new Vector3(columns - 8, rows - 1, 0f), Quaternion.identity);
+            }
+            Debug.Log(randomExit);
+        }
 	}
 }
