@@ -6,13 +6,14 @@ namespace Completed
 {
     public class DashMovement : MonoBehaviour
     {
-
+        private SpriteRenderer mySpriteRenderer;
         float dashDistance = 2f;
         int dashFood = 5;
 
         // Use this for initialization
         void Start()
         {
+            mySpriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         // Update is called once per frame
@@ -50,6 +51,7 @@ namespace Completed
                     }
                     Player.food -= dashFood;
                     GameManager.instance.playersTurn = false;
+                    mySpriteRenderer.flipX = true;
                 }
                 if (Input.GetKeyDown(KeyCode.D))
                 {
@@ -60,6 +62,16 @@ namespace Completed
                     }
                     Player.food -= dashFood;
                     GameManager.instance.playersTurn = false;
+                    mySpriteRenderer.flipX = false;
+                }
+                //Flip the sprite in the direction you move
+                if(Input.GetKey(KeyCode.LeftArrow))
+                {
+                    mySpriteRenderer.flipX = true;
+                }
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    mySpriteRenderer.flipX = false;
                 }
             }
         }
