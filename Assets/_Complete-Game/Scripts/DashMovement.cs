@@ -29,6 +29,7 @@ namespace Completed
                         transform.position = new Vector2(transform.position.x, 7);
                     }
                     Player.food -= dashFood;
+                    GameManager.instance.playersTurn = false;
                 }
                 if (Input.GetKeyDown(KeyCode.S))
                 {
@@ -38,6 +39,7 @@ namespace Completed
                         transform.position = new Vector2(transform.position.x, 0);
                     }
                     Player.food -= dashFood;
+                    GameManager.instance.playersTurn = false;
                 }
                 if (Input.GetKeyDown(KeyCode.A))
                 {
@@ -47,6 +49,7 @@ namespace Completed
                         transform.position = new Vector2(0, transform.position.y);
                     }
                     Player.food -= dashFood;
+                    GameManager.instance.playersTurn = false;
                 }
                 if (Input.GetKeyDown(KeyCode.D))
                 {
@@ -56,6 +59,7 @@ namespace Completed
                         transform.position = new Vector2(7, transform.position.y);
                     }
                     Player.food -= dashFood;
+                    GameManager.instance.playersTurn = false;
                 }
             }
         }
