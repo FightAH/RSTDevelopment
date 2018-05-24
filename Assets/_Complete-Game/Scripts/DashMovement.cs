@@ -51,7 +51,7 @@ namespace Completed
                     }
                     Player.food -= dashFood;
                     GameManager.instance.playersTurn = false;
-                    transform.localScale = new Vector3(-1, 1, 1);
+                    mySpriteRenderer.flipX = true;
                 }
                 if (Input.GetKeyDown(KeyCode.D))
                 {
@@ -62,16 +62,16 @@ namespace Completed
                     }
                     Player.food -= dashFood;
                     GameManager.instance.playersTurn = false;
-                    transform.localScale = new Vector3(1, 1, 1);
+                    mySpriteRenderer.flipX = false;
                 }
                 //Flip the sprite in the direction you move
                 if(Input.GetKey(KeyCode.LeftArrow))
                 {
-                    transform.localScale = new Vector3(-1,1,1);
+                    mySpriteRenderer.flipX = true;
                 }
                 if (Input.GetKey(KeyCode.RightArrow))
                 {
-                    transform.localScale = new Vector3(1, 1, 1);
+                    mySpriteRenderer.flipX = false;
                 }
             }
         }

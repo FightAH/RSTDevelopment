@@ -87,6 +87,7 @@
     <Compile Include="Assets\_Complete-Game\Scripts\Loader.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\MovingObject.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Player.cs" />
+    <Compile Include="Assets\_Complete-Game\Scripts\PlayerController.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Shoot.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\SoundManager.cs" />
     <Compile Include="Assets\_Complete-Game\Scripts\Wall.cs" />
