@@ -17,6 +17,8 @@ namespace Completed
 		
 		
 		private Text levelText;									//Text to display current level number.
+        private Text foodLeftText;                              //Text to display how much food you have left.
+        private GameObject foodImage;                           //food image.
 		private GameObject levelImage;							//Image to block out level as levels are being set up, background for levelText.
 		private BoardManager boardScript;						//Store a reference to our BoardManager which will set up the level.
 		public int level = 1;									//Current level number, expressed in game as "Day 1".
@@ -29,6 +31,7 @@ namespace Completed
 		//Awake is always called before any Start functions
 		void Awake()
 		{
+            Completed.Player.food = 100;
             //Check if instance already exists
             if (instance == null)
 
@@ -74,11 +77,19 @@ namespace Completed
 		//Initializes the game for each level.
 		void InitGame()
 		{
-			//While doingSetup is true the player can't move, prevent player from moving while title card is up.
-			doingSetup = true;
+            //While doingSetup is true the player can't move, prevent player from moving while title card is up.
+            doingSetup = true;
 			
 			//Get a reference to our image LevelImage by finding it by name.
 			levelImage = GameObject.Find("LevelImage");
+            
+            //Get a reference to our image FoodImage by finding it by name.
+            foodImage = GameObject.Find("FoodImage");
+
+            //Get a reference to our text FoodLeft text component by finding it by name and calling GetComponent.
+            foodLeftText = GameObject.Find("FoodLeft").GetComponent<Text>();
+
+            foodLeftText.text = "" + Completed.Player.food;
 			
 			//Get a reference to our text LevelText's text component by finding it by name and calling GetComponent.
 			levelText = GameObject.Find("LevelText").GetComponent<Text>();
@@ -137,6 +148,10 @@ namespace Completed
 		{
 			//Set levelText to display number of levels passed and game over message
 			levelText.text = "After " + level + " days, you starved.";
+
+            foodLeftText.text = "0";
+
+            foodImage.SetActive(true);
 			
 			//Enable black background image gameObject.
 			levelImage.SetActive(true);
