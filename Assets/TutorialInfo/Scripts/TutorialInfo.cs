@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class TutorialInfo : MonoBehaviour 
 {
 
-    GameObject GameManager;
+    GameObject gameManager;
 
 	// allow user to choose whether to show this menu 
 	public bool showAtStart = true;
@@ -103,5 +103,8 @@ public class TutorialInfo : MonoBehaviour
 
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        gameManager = GameObject.Find("GameManager(Clone)");
+        gameManager.GetComponent<Completed.GameManager>().enabled = true;
+
     }
 }
