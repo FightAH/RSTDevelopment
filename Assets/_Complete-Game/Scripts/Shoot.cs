@@ -23,40 +23,40 @@ public class Shoot : MonoBehaviour {
 	// Update is called once per frame
     private void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             velocity = new Vector2(0f, 5f);
-            offset = new Vector2(0f, 1f);
+            offset = new Vector2(0f, 0.8f);
             /*up = true;
             down = false;
             right = false;
             left = false;*/
             shoot = shootingDirection.UP;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             velocity = new Vector2(0f, -5f);
-            offset = new Vector2(0f, -1f);
+            offset = new Vector2(0f, -0.8f);
             /*up = false;
             down = true;
             right = false;
             left = false;*/
             shoot = shootingDirection.DOWN;
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             velocity = new Vector2(-5f, 0f);
-            offset = new Vector2(-1f, 0f);
+            offset = new Vector2(-0.8f, 0f);
             /*up = false;
             down = false;
             right = false;
             left = true;*/
             shoot = shootingDirection.LEFT;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             velocity = new Vector2(5f, 0f);
-            offset = new Vector2(1f, 0f);
+            offset = new Vector2(0.8f, 0f);
             /*up = false;
             down = false;
             right = true;

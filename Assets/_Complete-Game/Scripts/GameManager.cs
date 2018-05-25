@@ -71,6 +71,7 @@ namespace Completed
         {
             instance.level++;
             instance.InitGame();
+            EnemyHealth.enemyHealth = 2;
         }
 
 		
