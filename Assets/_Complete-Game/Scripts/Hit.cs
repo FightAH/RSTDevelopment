@@ -6,6 +6,8 @@ public class Hit : MonoBehaviour {
 
 	public AudioSource audioPlayer;
 	public AudioClip clip;
+	public GameObject explosion;
+	string name = "Explosion(Clone)";
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +22,10 @@ public class Hit : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D col)
     {
+		
+		Instantiate(explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
+		GameObject go = GameObject.Find (name);
+		Destroy (go.gameObject, 0.1f);
         Destroy(this.gameObject);
 
         if(col.gameObject.tag == "Enemy")

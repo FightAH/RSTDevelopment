@@ -99,6 +99,8 @@ public class TutorialInfo : MonoBehaviour
     {
         Completed.GameManager.instance.level = 0;
         Completed.Player.food = 100;
+		Completed.Player.shielded = 0;
+		Completed.Shoot.ammo = 6;
 
 
 

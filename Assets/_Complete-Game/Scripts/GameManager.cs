@@ -78,6 +78,7 @@ namespace Completed
             instance.level++;
             instance.InitGame();
             EnemyHealth.enemyHealth = 4;
+			GiveFood.giveFood = 1;
         }
 
 		
@@ -170,6 +171,10 @@ namespace Completed
 			levelText.text = "After " + level + " days, you starved.";
 
             foodLeftText.text = "0";
+
+			shieldLeftText.text = "" + Completed.Player.shielded;
+
+			ammoLeftText.text = "" + Completed.Shoot.ammo;
 
             foodImage.SetActive(true);
 			

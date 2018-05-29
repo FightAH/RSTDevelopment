@@ -14,6 +14,7 @@ namespace Completed
 		public int wallDamage = 1;					//How much damage a player does to a wall when chopping it.
 		public Text foodText;						//UI Text to display current player food total.
         public Text flavorText;                     //Ui text to display what you consumed.
+		public Text shieldedText;                   //Ui text to display if you have shield.
 		public AudioClip moveSound1;				//1 of 2 Audio clips to play when player moves.
 		public AudioClip moveSound2;				//2 of 2 Audio clips to play when player moves.
 		public AudioClip eatSound1;					//1 of 2 Audio clips to play when player collects a food object.
@@ -62,6 +63,7 @@ namespace Completed
 		
 		private void Update ()
 		{
+			shieldedText.text = "Shielded: " + shielded;
             foodText.text = "Food: " + food;
             CheckIfGameOver();
             //If it's not the player's turn, exit the function.
