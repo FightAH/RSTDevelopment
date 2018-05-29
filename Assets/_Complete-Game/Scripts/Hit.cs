@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Hit : MonoBehaviour {
 
-    
+	public AudioSource audioPlayer;
+	public AudioClip clip;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,8 @@ public class Hit : MonoBehaviour {
 
         if(col.gameObject.tag == "Enemy")
         {
+			audioPlayer.clip = clip;
+			audioPlayer.Play();
             Completed.EnemyHealth.enemyHealth -= 1;
             Debug.Log(Completed.EnemyHealth.enemyHealth);
         }

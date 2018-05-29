@@ -227,6 +227,14 @@ namespace Completed
 				//Disable the soda object the player collided with.
 				other.gameObject.SetActive (false);
 			}
+			else if(other.tag == "Ammo")
+			{
+				//Add pointsPerSoda to players food points total
+				Completed.Shoot.ammo = 6;
+
+				//Disable the ammo object the player collided with.
+				other.gameObject.SetActive (false);
+			}
 		}
 		
 		

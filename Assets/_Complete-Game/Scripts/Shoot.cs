@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;	//Allows us to use UI.
 
+namespace Completed
+{
 public class Shoot : MonoBehaviour {
     enum shootingDirection { UP, DOWN, LEFT, RIGHT };
     shootingDirection shoot;
@@ -14,10 +17,16 @@ public class Shoot : MonoBehaviour {
     bool down = false;
     bool right = true;
     bool left = false;
+	public AudioSource audioPlayer;
+	public AudioClip clip;
+	float cooldown;
+	public static int ammo;
+	public Text ammoText;						//UI Text to display current player ammo total.
 
 	// Use this for initialization
 	void Start () {
         velocity = new Vector2(5f, 0f);
+		cooldown = 0f;
 	}
 	
 	// Update is called once per frame
@@ -67,34 +76,52 @@ public class Shoot : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canShoot && shoot == shootingDirection.RIGHT)
-        {
-            GameObject go = (GameObject)Instantiate(bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
+		ammoText.text = "Ammo: " + ammo;
+		cooldown = cooldown - Time.deltaTime;
+		if (ammo > 0) {
+			if (cooldown <= 0f) {
+				if (Input.GetKeyDown (KeyCode.Space) && canShoot && shoot == shootingDirection.RIGHT) {
+					GameObject go = (GameObject)Instantiate (bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
 
-            go.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x, velocity.y);
-            Destroy(go.gameObject, 1.0f);
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && canShoot && shoot == shootingDirection.LEFT)
-        {
-            GameObject go = (GameObject)Instantiate(bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
+					go.GetComponent<Rigidbody2D> ().velocity = new Vector2 (velocity.x, velocity.y);
+					audioPlayer.clip = clip;
+					audioPlayer.Play ();
+					Destroy (go.gameObject, 1.0f);
+					cooldown = 1f;
+					ammo -= 1;
+				}
+				if (Input.GetKeyDown (KeyCode.Space) && canShoot && shoot == shootingDirection.LEFT) {
+					GameObject go = (GameObject)Instantiate (bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
 
-            go.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x, velocity.y);
-            Destroy(go.gameObject, 1.0f);
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && canShoot && shoot == shootingDirection.UP)
-        {
-            GameObject go = (GameObject)Instantiate(bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
+					go.GetComponent<Rigidbody2D> ().velocity = new Vector2 (velocity.x, velocity.y);
+					audioPlayer.clip = clip;
+					audioPlayer.Play ();
+					Destroy (go.gameObject, 1.0f);
+					cooldown = 1f;
+					ammo -= 1;
+				}
+				if (Input.GetKeyDown (KeyCode.Space) && canShoot && shoot == shootingDirection.UP) {
+					GameObject go = (GameObject)Instantiate (bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
 
-            go.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x, velocity.y);
-            Destroy(go.gameObject, 1.0f);
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && canShoot && shoot == shootingDirection.DOWN)
-        {
-            GameObject go = (GameObject)Instantiate(bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
+					go.GetComponent<Rigidbody2D> ().velocity = new Vector2 (velocity.x, velocity.y);
+					audioPlayer.clip = clip;
+					audioPlayer.Play ();
+					Destroy (go.gameObject, 1.0f);
+					cooldown = 1f;
+					ammo -= 1;
+				}
+				if (Input.GetKeyDown (KeyCode.Space) && canShoot && shoot == shootingDirection.DOWN) {
+					GameObject go = (GameObject)Instantiate (bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
 
-            go.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x, velocity.y);
-            Destroy(go.gameObject, 1.0f);
-        }
+					go.GetComponent<Rigidbody2D> ().velocity = new Vector2 (velocity.x, velocity.y);
+					audioPlayer.clip = clip;
+					audioPlayer.Play ();
+					Destroy (go.gameObject, 1.0f);
+					cooldown = 1f;
+					ammo -= 1;
+				}
+			}
+		}
     }
 
     IEnumerator CanShoot()
@@ -103,4 +130,5 @@ public class Shoot : MonoBehaviour {
         yield return new WaitForSeconds(coolDown);
         canShoot = true;
     }
+}
 }

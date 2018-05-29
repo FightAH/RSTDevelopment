@@ -18,7 +18,9 @@ namespace Completed
 		
 		private Text levelText;									//Text to display current level number.
         private Text foodLeftText;                              //Text to display how much food you have left.
+		private Text ammoLeftText;                              //Text to display how much ammo you have left.
         private GameObject foodImage;                           //food image.
+		private GameObject ammoImage;                           //ammo image.
 		private GameObject levelImage;							//Image to block out level as levels are being set up, background for levelText.
 		private BoardManager boardScript;						//Store a reference to our BoardManager which will set up the level.
 		public int level = 1;									//Current level number, expressed in game as "Day 1".
@@ -31,6 +33,7 @@ namespace Completed
 		//Awake is always called before any Start functions
 		void Awake()
 		{
+			Completed.Shoot.ammo = 6;
             Completed.Player.food = 100;
             //Check if instance already exists
             if (instance == null)
@@ -87,10 +90,18 @@ namespace Completed
             //Get a reference to our image FoodImage by finding it by name.
             foodImage = GameObject.Find("FoodImage");
 
+			//Get a reference to our image FoodImage by finding it by name.
+			ammoImage = GameObject.Find("AmmoImage");
+
             //Get a reference to our text FoodLeft text component by finding it by name and calling GetComponent.
             foodLeftText = GameObject.Find("FoodLeft").GetComponent<Text>();
 
             foodLeftText.text = "" + Completed.Player.food;
+
+			//Get a reference to our text FoodLeft text component by finding it by name and calling GetComponent.
+			ammoLeftText = GameObject.Find("AmmoLeft").GetComponent<Text>();
+
+			ammoLeftText.text = "" + Completed.Shoot.ammo;
 			
 			//Get a reference to our text LevelText's text component by finding it by name and calling GetComponent.
 			levelText = GameObject.Find("LevelText").GetComponent<Text>();
