@@ -26,8 +26,15 @@ public class Hit : MonoBehaviour {
         {
 			audioPlayer.clip = clip;
 			audioPlayer.Play();
-            Completed.EnemyHealth.enemyHealth -= 1;
+            Completed.EnemyHealth.enemyHealth -= 2;
             Debug.Log(Completed.EnemyHealth.enemyHealth);
         }
+		if(col.gameObject.tag == "Tank")
+		{
+			audioPlayer.clip = clip;
+			audioPlayer.Play();
+			Completed.EnemyHealth.enemyHealth -= 1;
+			Debug.Log(Completed.EnemyHealth.enemyHealth);
+		}
     }
 }

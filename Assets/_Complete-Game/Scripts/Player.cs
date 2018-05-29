@@ -22,6 +22,7 @@ namespace Completed
 		public AudioClip drinkSound2;				//2 of 2 Audio clips to play when player collects a soda object.
 		public AudioClip gameOverSound;				//Audio clip to play when player dies.
         public GameObject restartButton;            //Restart button at the end.
+		public static int shielded = 0;
 		
 		private Animator animator;					//Used to store a reference to the Player's animator component.
 		public static int food;                           //Used to store player food points total during level.
@@ -231,6 +232,14 @@ namespace Completed
 			{
 				//Add pointsPerSoda to players food points total
 				Completed.Shoot.ammo = 6;
+
+				//Disable the ammo object the player collided with.
+				other.gameObject.SetActive (false);
+			}
+			else if(other.tag == "Shield")
+			{
+				//Add pointsPerSoda to players food points total
+				shielded = 1;
 
 				//Disable the ammo object the player collided with.
 				other.gameObject.SetActive (false);

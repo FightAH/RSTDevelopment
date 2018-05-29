@@ -32,7 +32,8 @@ namespace Completed
 		public int rows = 8;											//Number of rows in our game board.
 		public Count wallCount = new Count (5, 9);						//Lower and upper limit for our random number of walls per level.
 		public Count foodCount = new Count (1, 5);						//Lower and upper limit for our random number of food items per level.
-		public Count ammoCount = new Count (1, 2);						//Lower and upper limit for our random number of food items per level.
+		public Count ammoCount = new Count (1, 2);						//Lower and upper limit for our random number of shield items per level.
+		public Count shieldCount = new Count (1, 2);					//Lower and upper limit for our random number of shield items per level.
 		public GameObject exit;											//Prefab to spawn for exit.
 		public GameObject[] floorTiles;									//Array of floor prefabs.
 		public GameObject[] wallTiles;									//Array of wall prefabs.
@@ -40,6 +41,7 @@ namespace Completed
 		public GameObject[] enemyTiles;									//Array of enemy prefabs.
 		public GameObject[] outerWallTiles;								//Array of outer tile prefabs.
 		public GameObject[] ammoTiles;									//Array of ammo prefabs.
+		public GameObject[] shieldTiles;								//Array of shield prefabs.
 		
 		private Transform boardHolder;									//A variable to store a reference to the transform of our Board object.
 		private List <Vector3> gridPositions = new List <Vector3> ();	//A list of possible locations to place tiles.
@@ -149,6 +151,8 @@ namespace Completed
 
 			//Instantiate a random number of ammo tiles based on minimum and maximum, at randomized positions.
 			LayoutObjectAtRandom (ammoTiles, ammoCount.minimum, ammoCount.maximum);
+			//Instantiate a random number of shield tiles based on minimum and maximum, at randomized positions.
+			LayoutObjectAtRandom (shieldTiles, shieldCount.minimum, shieldCount.maximum);
 			
 			//Determine number of enemies based on current level number, based on a logarithmic progression
 			int enemyCount = (int)Mathf.Log(level, 2f);
