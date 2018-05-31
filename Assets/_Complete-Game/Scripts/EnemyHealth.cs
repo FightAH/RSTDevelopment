@@ -8,8 +8,8 @@ namespace Completed
     public class EnemyHealth : MonoBehaviour
     {
 
-        public static int enemyHealth = 4;
-        public static int attack = 1;
+        public int enemyHealth = 4;
+        public int attack = 1;
 
         // Use this for initialization
         void Start()

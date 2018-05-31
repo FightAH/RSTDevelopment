@@ -9,6 +9,7 @@ namespace Completed
 		public static int playerDamage; 							//The amount of food points to subtract from the player when attacking.
 		public AudioClip attackSound1;						//First of two audio clips to play when attacking the player.
 		public AudioClip attackSound2;						//Second of two audio clips to play when attacking the player.
+		EnemyHealth healthEnemy;
 		
 		
 		private Animator animator;							//Variable of type Animator to store a reference to the enemy's Animator component.
@@ -19,6 +20,8 @@ namespace Completed
 		//Start overrides the virtual Start function of the base class.
 		protected override void Start ()
 		{
+			healthEnemy = GetComponent<EnemyHealth> ();
+
 			//Register this enemy with our instance of GameManager by adding it to a list of Enemy objects. 
 			//This allows the GameManager to issue movement commands.
 			GameManager.instance.AddEnemyToList (this);
@@ -82,7 +85,7 @@ namespace Completed
 		//and takes a generic parameter T which we use to pass in the component we expect to encounter, in this case Player
 		protected override void OnCantMove <T> (T component)
 		{
-            if (EnemyHealth.attack == 1)
+            if (healthEnemy.attack == 1)
             {
                 //Declare hitPlayer and set it to equal the encountered component.
                 Player hitPlayer = component as Player;

@@ -76,7 +76,6 @@ namespace Completed
         {
             instance.level++;
             instance.InitGame();
-            EnemyHealth.enemyHealth = 4;
 			GiveFood.giveFood = 1;
 			TutorialInfo.m_SpriteRenderer.color = TutorialInfo.m_NewColor;
         }

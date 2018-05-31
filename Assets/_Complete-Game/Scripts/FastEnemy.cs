@@ -17,10 +17,13 @@ namespace Completed
 
 		float Timer = 0.1f;
 
+		EnemyHealth healthEnemy;
+
 
 		//Start overrides the virtual Start function of the base class.
 		protected override void Start ()
 		{
+			healthEnemy = GetComponent<EnemyHealth> ();
 			//Get and store a reference to the attached Animator component.
 			animator = GetComponent<Animator> ();
 
@@ -93,7 +96,7 @@ namespace Completed
 		//and takes a generic parameter T which we use to pass in the component we expect to encounter, in this case Player
 		protected override void OnCantMove <T> (T component)
 		{
-			if (EnemyHealth.attack == 1)
+			if (healthEnemy.attack == 1)
 			{
 				//Declare hitPlayer and set it to equal the encountered component.
 				Player hitPlayer = component as Player;

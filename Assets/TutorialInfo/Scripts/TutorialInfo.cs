@@ -5,8 +5,18 @@ using UnityEngine.SceneManagement;
 
 
 // Hi! This script presents the overlay info for our tutorial content, linking you back to the relevant page.
+
 public class TutorialInfo : MonoBehaviour 
 {
+	int colorSelected = 0;
+
+	public GameObject player;
+
+	public GameObject image;
+
+	public static SpriteRenderer m_SpriteRenderer;
+
+	public static Color m_NewColor;
 
     GameObject gameManager;
 
@@ -34,6 +44,7 @@ public class TutorialInfo : MonoBehaviour
 
 	void Awake()
 	{
+		m_SpriteRenderer = player.GetComponent<SpriteRenderer>();
 		// have we already shown this once?
 		if(alreadyShownThisSession)
 		{
@@ -61,6 +72,28 @@ public class TutorialInfo : MonoBehaviour
 			{
 				StartGame ();
 			}	
+		}
+	}
+
+	void Update()
+	{
+		if (colorSelected == 0) 
+		{
+			m_NewColor = new Color(1, 1, 1);
+			m_SpriteRenderer.color = m_NewColor;
+			image.GetComponent<Image> ().color = m_NewColor;
+		}
+		if (colorSelected == 1) 
+		{
+			m_NewColor = new Color (0, 0, 1);
+			m_SpriteRenderer.color = m_NewColor;
+			image.GetComponent<Image> ().color = m_NewColor;
+		}
+		if (colorSelected == 2) 
+		{
+			m_NewColor = new Color (1, 0, 0);
+			m_SpriteRenderer.color = m_NewColor;
+			image.GetComponent<Image> ().color = m_NewColor;
 		}
 	}
 
@@ -109,4 +142,22 @@ public class TutorialInfo : MonoBehaviour
         gameManager.GetComponent<Completed.GameManager>().enabled = true;
 
     }
+	public void Next()
+	{
+		if (colorSelected <= 2) 
+		{
+			colorSelected += 1;
+			Debug.Log (colorSelected);
+		}
+	}
+
+	public void Back()
+	{
+		if (colorSelected >= 0) 
+		{
+			colorSelected -= 1;
+			Debug.Log (colorSelected);
+		}
+	}
 }
+

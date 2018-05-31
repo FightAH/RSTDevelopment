@@ -9,6 +9,7 @@ public class Hit : MonoBehaviour {
 	public GameObject explosion;
 	string name = "Explosion(Clone)";
 
+
 	// Use this for initialization
 	void Start () {
 		
@@ -32,15 +33,13 @@ public class Hit : MonoBehaviour {
         {
 			audioPlayer.clip = clip;
 			audioPlayer.Play();
-            Completed.EnemyHealth.enemyHealth -= 2;
-            Debug.Log(Completed.EnemyHealth.enemyHealth);
+			col.gameObject.GetComponent<Completed.EnemyHealth>().enemyHealth -= 2;
         }
 		if(col.gameObject.tag == "Tank")
 		{
 			audioPlayer.clip = clip;
 			audioPlayer.Play();
-			Completed.EnemyHealth.enemyHealth -= 1;
-			Debug.Log(Completed.EnemyHealth.enemyHealth);
+			col.gameObject.GetComponent<Completed.EnemyHealth>().enemyHealth -= 2;
 		}
     }
 }
