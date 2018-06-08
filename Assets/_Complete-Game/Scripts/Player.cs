@@ -65,7 +65,6 @@ namespace Completed
 		{
 			shieldedText.text = "Shielded: " + shielded;
             foodText.text = "Food: " + food;
-            CheckIfGameOver();
             //If it's not the player's turn, exit the function.
             if (!GameManager.instance.playersTurn) return;
 			
@@ -140,7 +139,7 @@ namespace Completed
 		//AttemptMove overrides the AttemptMove function in the base class MovingObject
 		//AttemptMove takes a generic parameter T which for Player will be of the type Wall, it also takes integers for x and y direction to move in.
 		protected override void AttemptMove <T> (int xDir, int yDir)
-		{
+		{ 
 			//Every time player moves, subtract from food points total.
 			food--;
 			
@@ -275,9 +274,9 @@ namespace Completed
 			CheckIfGameOver ();
 		}
 		
-		
+
 		//CheckIfGameOver checks if the player is out of food points and if so, ends the game.
-		private void CheckIfGameOver ()
+		public void CheckIfGameOver ()
 		{
 			//Check if food point total is less than or equal to zero.
 			if (food <= 0) 

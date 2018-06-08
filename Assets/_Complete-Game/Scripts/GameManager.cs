@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.Analytics;
 
 namespace Completed
 {
@@ -29,6 +30,9 @@ namespace Completed
 		private List<Enemy> enemies;							//List of all Enemy units, used to issue them move commands.
 		private bool enemiesMoving;								//Boolean to check if enemies are moving.
 		public bool doingSetup = true;							//Boolean to check if we're setting up board, prevent Player from moving during setup.
+		static float levelStartTime;
+		public float gameStartTime;
+		static int staticLevel;
 
 
 		//Awake is always called before any Start functions
@@ -74,6 +78,14 @@ namespace Completed
         //This is called each time a scene is loaded.
         static private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
+			float levelFinalTime = Time.time - levelStartTime;
+			Analytics.CustomEvent ("Level Time", new Dictionary<string, object> {
+				{ "Level", staticLevel },
+				{ "Level Duration", levelFinalTime }
+			}
+			);
+			Debug.Log ("Level Played " + staticLevel);
+			Debug.Log ("Level Duration " + levelFinalTime);
             instance.level++;
             instance.InitGame();
 			GiveFood.giveFood = 1;
@@ -84,6 +96,8 @@ namespace Completed
 		//Initializes the game for each level.
 		void InitGame()
 		{
+			levelStartTime = Time.time;
+			staticLevel = level;
             //While doingSetup is true the player can't move, prevent player from moving while title card is up.
             doingSetup = true;
 			
@@ -166,6 +180,16 @@ namespace Completed
 		//GameOver is called when the player reaches 0 food points
 		public void GameOver()
 		{
+			float gameFinalTime = Time.time - gameStartTime;
+			Analytics.CustomEvent ("Dead level", new Dictionary<string, object> 
+			{
+					{"Level", level},
+					{"Time Played", gameFinalTime}
+			}
+			);
+
+			Debug.Log ("Dead " + level);
+			Debug.Log ("Time Played " + gameFinalTime);
 			//Set levelText to display number of levels passed and game over message
 			levelText.text = "After " + level + " days, you starved.";
 

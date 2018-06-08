@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;	//Allows us to use UI.
+using UnityEngine.Analytics;
 
 namespace Completed
 {
@@ -22,6 +23,7 @@ public class Shoot : MonoBehaviour {
 	float cooldown;
 	public static int ammo;
 	public Text ammoText;						//UI Text to display current player ammo total.
+	int outOfAmmo = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -79,6 +81,7 @@ public class Shoot : MonoBehaviour {
 		ammoText.text = "Ammo: " + ammo;
 		cooldown = cooldown - Time.deltaTime;
 		if (ammo > 0) {
+				outOfAmmo = 0;
 			if (cooldown <= 0f) {
 				if (Input.GetKeyDown (KeyCode.Space) && canShoot && shoot == shootingDirection.RIGHT) {
 					GameObject go = (GameObject)Instantiate (bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
@@ -122,6 +125,12 @@ public class Shoot : MonoBehaviour {
 				}
 			}
 		}
+			if (ammo == 0 && outOfAmmo == 0) 
+			{
+				Analytics.CustomEvent ("Out of Ammo");
+				Debug.Log ("Out of Ammo");
+				outOfAmmo = 1;
+			}
     }
 
     IEnumerator CanShoot()

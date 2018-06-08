@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;	//Allows us to use UI.
+using UnityEngine.Analytics;
 
 namespace Completed
 {
@@ -35,7 +36,12 @@ public class GiveFood : MonoBehaviour {
 						Debug.Log ("Collided");
 						addFood = Random.Range (0, 40);
 						Completed.Player.food += addFood;
-						Debug.Log (addFood);
+						Debug.Log ("Gave Food " + addFood);
+						Analytics.CustomEvent ("Food Given", new Dictionary<string, object> 
+							{
+								{"addFood", addFood}
+							}
+						);
 						giveFood = 0;
 						giveFoodText.text = "";
 					}

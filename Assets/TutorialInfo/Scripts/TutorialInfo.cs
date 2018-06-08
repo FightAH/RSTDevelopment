@@ -115,7 +115,8 @@ public class TutorialInfo : MonoBehaviour
 	// continue to play, by ensuring the preference is set correctly, the overlay is not active, 
 	// and that the audio listener is enabled, and time scale is 1 (normal)
 	public void StartGame()
-	{		
+	{	
+		Completed.GameManager.instance.gameStartTime = Time.time;	
 		overlay.SetActive (false);
 		mainListener.enabled = true;
 		Time.timeScale = 1f;

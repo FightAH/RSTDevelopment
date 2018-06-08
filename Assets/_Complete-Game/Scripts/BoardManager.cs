@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using System;
 using System.Collections.Generic; 		//Allows us to use Lists.
 using Random = UnityEngine.Random; 		//Tells Random to use the Unity Engine random number generator.
+using UnityEngine.Analytics;
 
 namespace Completed
 	
@@ -180,6 +181,11 @@ namespace Completed
             {
                 Instantiate(exit, new Vector3(columns - 8, rows - 1, 0f), Quaternion.identity);
             }
+			Analytics.CustomEvent ("Exit Location", new Dictionary<string, object> 
+				{
+					{"Random", randomExit}
+				}
+			);
             Debug.Log(randomExit);
         }
 	}

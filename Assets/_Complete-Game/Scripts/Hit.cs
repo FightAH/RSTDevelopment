@@ -39,7 +39,7 @@ public class Hit : MonoBehaviour {
 		{
 			audioPlayer.clip = clip;
 			audioPlayer.Play();
-			col.gameObject.GetComponent<Completed.EnemyHealth>().enemyHealth -= 2;
+			col.gameObject.GetComponent<Completed.EnemyHealth>().enemyHealth -= 1;
 		}
     }
 }

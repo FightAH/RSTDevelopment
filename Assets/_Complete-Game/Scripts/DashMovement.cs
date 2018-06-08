@@ -9,10 +9,12 @@ namespace Completed
         private SpriteRenderer mySpriteRenderer;
         float dashDistance = 2f;
         int dashFood = 5;
+		Player player;
 
         // Use this for initialization
         void Start()
         {
+			player = GetComponent<Player> ();
             mySpriteRenderer = GetComponent<SpriteRenderer>();
         }
 
@@ -30,6 +32,7 @@ namespace Completed
                         transform.position = new Vector2(transform.position.x, 7);
                     }
                     Player.food -= dashFood;
+					player.CheckIfGameOver();
                     GameManager.instance.playersTurn = false;
                 }
                 if (Input.GetKeyDown(KeyCode.S))
@@ -40,6 +43,7 @@ namespace Completed
                         transform.position = new Vector2(transform.position.x, 0);
                     }
                     Player.food -= dashFood;
+					player.CheckIfGameOver();
                     GameManager.instance.playersTurn = false;
                 }
                 if (Input.GetKeyDown(KeyCode.A))
@@ -50,6 +54,7 @@ namespace Completed
                         transform.position = new Vector2(0, transform.position.y);
                     }
                     Player.food -= dashFood;
+					player.CheckIfGameOver();
                     GameManager.instance.playersTurn = false;
                     mySpriteRenderer.flipX = true;
                 }
@@ -61,6 +66,7 @@ namespace Completed
                         transform.position = new Vector2(7, transform.position.y);
                     }
                     Player.food -= dashFood;
+					player.CheckIfGameOver();
                     GameManager.instance.playersTurn = false;
                     mySpriteRenderer.flipX = false;
                 }
