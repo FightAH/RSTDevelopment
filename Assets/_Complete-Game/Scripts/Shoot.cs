@@ -7,10 +7,10 @@ using UnityEngine.Analytics;
 namespace Completed
 {
 public class Shoot : MonoBehaviour {
-    enum shootingDirection { UP, DOWN, LEFT, RIGHT };
+    enum shootingDirection { UP, DOWN, LEFT, RIGHT }; //Sets the direction to shoot.
     shootingDirection shoot;
-    public GameObject bullet;
-    public Vector2 velocity;
+    public GameObject bullet; // Prefab of the bullet.
+    public Vector2 velocity; // Speed of the bullet.
     bool canShoot = true;
     public Vector2 offset;
     public float coolDown = 1f;
@@ -21,12 +21,13 @@ public class Shoot : MonoBehaviour {
 	public AudioSource audioPlayer;
 	public AudioClip clip;
 	float cooldown;
-	public static int ammo;
+	public static int ammo; //Amount of ammo.
 	public Text ammoText;						//UI Text to display current player ammo total.
-	int outOfAmmo = 1;
+	int outOfAmmo = 1; //Out of Ammo.
 
 	// Use this for initialization
 	void Start () {
+			//Sets the speed to shoot and direction.
         velocity = new Vector2(5f, 0f);
 		cooldown = 0f;
 	}
@@ -34,6 +35,7 @@ public class Shoot : MonoBehaviour {
 	// Update is called once per frame
     private void FixedUpdate()
     {
+			//Checks which direction you are walking to see which direction to shoot and change speed.
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             velocity = new Vector2(0f, 5f);
@@ -75,7 +77,7 @@ public class Shoot : MonoBehaviour {
             shoot = shootingDirection.RIGHT;
         }
     }
-
+		//Checks if you still have ammo left to shoot and spawn the bullet. If you dont have ammo you cant shoot.
     private void Update()
     {
 		ammoText.text = "Ammo: " + ammo;
@@ -124,7 +126,7 @@ public class Shoot : MonoBehaviour {
 					ammo -= 1;
 				}
 			}
-		}
+		}//If you are out of ammo send it to the analytics.
 			if (ammo == 0 && outOfAmmo == 0) 
 			{
 				Analytics.CustomEvent ("Out of Ammo");

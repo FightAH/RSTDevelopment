@@ -23,7 +23,7 @@ namespace Completed
 		public AudioClip drinkSound2;				//2 of 2 Audio clips to play when player collects a soda object.
 		public AudioClip gameOverSound;				//Audio clip to play when player dies.
         public GameObject restartButton;            //Restart button at the end.
-		public static int shielded = 0;
+		public static int shielded = 0;				//Shielded or not.
 		
 		private Animator animator;					//Used to store a reference to the Player's animator component.
 		public static int food;                           //Used to store player food points total during level.
@@ -63,6 +63,7 @@ namespace Completed
 		
 		private void Update ()
 		{
+			//Set the text of shielded and food.
 			shieldedText.text = "Shielded: " + shielded;
             foodText.text = "Food: " + food;
             //If it's not the player's turn, exit the function.

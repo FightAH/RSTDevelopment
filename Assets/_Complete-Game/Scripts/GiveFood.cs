@@ -14,6 +14,7 @@ public class GiveFood : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+			//Set starting variables values.
 		giveFood = 1;
 		giveFoodText.text = "";
 		giveFoodText = GameObject.Find("GiveFoodText").GetComponent<Text>();
@@ -23,7 +24,9 @@ public class GiveFood : MonoBehaviour {
 	void Update () {
 		
 	}
-
+	//If you trigger the NPC, you will be prompted with text to accept food/
+		//when you press e you will accept the food, he will give you a random amount of food bewteen 0 and 40.
+		//Send the amount to the analytics.
 	void OnTriggerStay2D(Collider2D col)
 	{
 		if (col.gameObject.tag == "NPC") 

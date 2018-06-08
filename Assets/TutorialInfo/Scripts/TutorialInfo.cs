@@ -8,16 +8,18 @@ using UnityEngine.SceneManagement;
 
 public class TutorialInfo : MonoBehaviour 
 {
+	//Which color is selected during the start menu.
 	int colorSelected = 0;
 
+	//Reference to the player object.
 	public GameObject player;
-
+	//Reference to the image.
 	public GameObject image;
-
+	//Reference to the SpriteRenderer of the image.
 	public static SpriteRenderer m_SpriteRenderer;
-
+	//Reference to the new color to be put on the player sprite.
 	public static Color m_NewColor;
-
+	//Reference to the gameManager.
     GameObject gameManager;
 
 	// allow user to choose whether to show this menu 
@@ -77,6 +79,7 @@ public class TutorialInfo : MonoBehaviour
 
 	void Update()
 	{
+		//checks wich color is selected and changes the color of the sprite to that color.
 		if (colorSelected == 0) 
 		{
 			m_NewColor = new Color(1, 1, 1);
@@ -128,7 +131,8 @@ public class TutorialInfo : MonoBehaviour
 		showAtStart = showAtStartToggle.isOn;
 		PlayerPrefs.SetInt(showAtStartPrefsKey, showAtStart ? 1 : 0);
 	}
-    //Restarts the game
+    //Restarts the game, sets level back to 1, food o 100, shielded back to 0 and ammo back to 6.
+	//Then reload the scene, find the gamemanager and puts it back to active.
     public void RestartGame()
     {
         Completed.GameManager.instance.level = 0;
@@ -143,6 +147,7 @@ public class TutorialInfo : MonoBehaviour
         gameManager.GetComponent<Completed.GameManager>().enabled = true;
 
     }
+	//Lets you scroll between colors.
 	public void Next()
 	{
 		if (colorSelected <= 2) 
@@ -151,7 +156,7 @@ public class TutorialInfo : MonoBehaviour
 			Debug.Log (colorSelected);
 		}
 	}
-
+	//Lets you scroll between colors.
 	public void Back()
 	{
 		if (colorSelected >= 0) 

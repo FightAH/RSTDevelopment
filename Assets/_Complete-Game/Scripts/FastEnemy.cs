@@ -4,6 +4,7 @@ using System.Collections;
 namespace Completed
 {
 	//Enemy inherits from MovingObject, our base class for objects that can move, Player also inherits from this.
+	//This enemy always moves no matter if its his turn.
 	public class FastEnemy : MovingObject
 	{
 		public static int playerDamage; 							//The amount of food points to subtract from the player when attacking.
@@ -23,6 +24,7 @@ namespace Completed
 		//Start overrides the virtual Start function of the base class.
 		protected override void Start ()
 		{
+			//Sets the health of the enemy.
 			healthEnemy = GetComponent<EnemyHealth> ();
 			//Get and store a reference to the attached Animator component.
 			animator = GetComponent<Animator> ();
@@ -100,6 +102,7 @@ namespace Completed
 			{
 				//Declare hitPlayer and set it to equal the encountered component.
 				Player hitPlayer = component as Player;
+				//If player is shielded take less damage.
 				if (Completed.Player.shielded == 1) {
 					//Call the LoseFood function of hitPlayer passing it playerDamage, the amount of foodpoints to be subtracted.
 					hitPlayer.LoseFood (5);

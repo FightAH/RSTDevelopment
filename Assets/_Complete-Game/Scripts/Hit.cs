@@ -23,7 +23,8 @@ public class Hit : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-		
+		//Intantiate an explosion on the location of the bullet impact, delete this explosion after 0.1 seconds/
+		//If the collision is with an object of a certain tag do damage.
 		Instantiate(explosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
 		GameObject go = GameObject.Find (name);
 		Destroy (go.gameObject, 0.1f);

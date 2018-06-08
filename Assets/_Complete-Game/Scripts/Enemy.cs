@@ -89,6 +89,7 @@ namespace Completed
             {
                 //Declare hitPlayer and set it to equal the encountered component.
                 Player hitPlayer = component as Player;
+				//If the player is shielded the attack does less damage.
 				if (Completed.Player.shielded == 1) {
 					//Call the LoseFood function of hitPlayer passing it playerDamage, the amount of foodpoints to be subtracted.
 					hitPlayer.LoseFood (5);

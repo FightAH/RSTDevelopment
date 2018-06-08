@@ -7,13 +7,17 @@ namespace Completed
     public class DashMovement : MonoBehaviour
     {
         private SpriteRenderer mySpriteRenderer;
+		//Distance you dash.
         float dashDistance = 2f;
+		//Amount of food it costs to dash.
         int dashFood = 5;
+		//Reference to the player script.
 		Player player;
 
         // Use this for initialization
         void Start()
         {
+			//Get the player and sprite component.
 			player = GetComponent<Player> ();
             mySpriteRenderer = GetComponent<SpriteRenderer>();
         }
@@ -23,7 +27,8 @@ namespace Completed
         {
             if (GameManager.instance.doingSetup == false)
             {
-                //If the player presses the key it will place the player 2 in front of the axis and deduct 5 food.
+                //If the player presses the key it will place the player 2 in front of the axis and deduct 5 food. 
+				//if the player moves left or right it will also change the direction of the sprite.
                 if (Input.GetKeyDown(KeyCode.W))
                 {
                     transform.Translate(new Vector2(0, 1) * dashDistance);

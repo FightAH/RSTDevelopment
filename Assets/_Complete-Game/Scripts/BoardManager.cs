@@ -167,7 +167,7 @@ namespace Completed
 			//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 			LayoutObjectAtRandom (enemyTiles, enemyCount, enemyCount);
 
-            //Instantiate the exit tile in the upper right hand corner of our game board
+            //Instantiate the exit tile in 1 of 3 random locations on the board using a randomrange.
             randomExit = Random.Range(0, 3);
             if (randomExit == 0 || randomExit == 3)
             {
@@ -181,6 +181,7 @@ namespace Completed
             {
                 Instantiate(exit, new Vector3(columns - 8, rows - 1, 0f), Quaternion.identity);
             }
+			//sends analytics of where the exit was placed.
 			Analytics.CustomEvent ("Exit Location", new Dictionary<string, object> 
 				{
 					{"Random", randomExit}

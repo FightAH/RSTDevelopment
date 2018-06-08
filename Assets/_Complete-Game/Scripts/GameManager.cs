@@ -30,14 +30,15 @@ namespace Completed
 		private List<Enemy> enemies;							//List of all Enemy units, used to issue them move commands.
 		private bool enemiesMoving;								//Boolean to check if enemies are moving.
 		public bool doingSetup = true;							//Boolean to check if we're setting up board, prevent Player from moving during setup.
-		static float levelStartTime;
-		public float gameStartTime;
-		static int staticLevel;
+		static float levelStartTime;							//Start the timer for the level.
+		public float gameStartTime;								//Start the timer for the entire game.
+		static int staticLevel;									//See what level the player was in.
 
 
 		//Awake is always called before any Start functions
 		void Awake()
 		{
+			//Set the standerd values of the start game.
 			Completed.Shoot.ammo = 6;
 			Completed.Player.shielded = 0;
             Completed.Player.food = 100;
@@ -78,6 +79,7 @@ namespace Completed
         //This is called each time a scene is loaded.
         static private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
+			//Calculate the level duration and send it.
 			float levelFinalTime = Time.time - levelStartTime;
 			Analytics.CustomEvent ("Level Time", new Dictionary<string, object> {
 				{ "Level", staticLevel },
@@ -88,7 +90,9 @@ namespace Completed
 			Debug.Log ("Level Duration " + levelFinalTime);
             instance.level++;
             instance.InitGame();
+			//Set NPC to active again.
 			GiveFood.giveFood = 1;
+			//Change the color of the sprite of the player.
 			TutorialInfo.m_SpriteRenderer.color = TutorialInfo.m_NewColor;
         }
 
@@ -96,6 +100,7 @@ namespace Completed
 		//Initializes the game for each level.
 		void InitGame()
 		{
+			//Start the level timer.
 			levelStartTime = Time.time;
 			staticLevel = level;
             //While doingSetup is true the player can't move, prevent player from moving while title card is up.
@@ -180,6 +185,7 @@ namespace Completed
 		//GameOver is called when the player reaches 0 food points
 		public void GameOver()
 		{
+			//Set the final time and send it to the analytics
 			float gameFinalTime = Time.time - gameStartTime;
 			Analytics.CustomEvent ("Dead level", new Dictionary<string, object> 
 			{
@@ -192,11 +198,11 @@ namespace Completed
 			Debug.Log ("Time Played " + gameFinalTime);
 			//Set levelText to display number of levels passed and game over message
 			levelText.text = "After " + level + " days, you starved.";
-
+			//Show food left
             foodLeftText.text = "0";
-
+			//Show if shielded
 			shieldLeftText.text = "" + Completed.Player.shielded;
-
+			//Show amount of ammo
 			ammoLeftText.text = "" + Completed.Shoot.ammo;
 
             foodImage.SetActive(true);
