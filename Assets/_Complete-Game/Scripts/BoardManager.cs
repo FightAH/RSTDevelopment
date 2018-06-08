@@ -187,7 +187,7 @@ namespace Completed
 					{"Random", randomExit}
 				}
 			);
-            Debug.Log(randomExit);
+            Debug.Log("Exit Location " + randomExit);
         }
 	}
 }
