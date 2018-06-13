@@ -46,6 +46,10 @@ public class TutorialInfo : MonoBehaviour
 
 	void Awake()
 	{
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+        }
 		m_SpriteRenderer = player.GetComponent<SpriteRenderer>();
 		// have we already shown this once?
 		if(alreadyShownThisSession)
@@ -79,6 +83,11 @@ public class TutorialInfo : MonoBehaviour
 
 	void Update()
 	{
+        if (image == null)
+        {
+            image = GameObject.Find("Tutorial Info/Background/PlayerImage");
+        }
+
 		//checks wich color is selected and changes the color of the sprite to that color.
 		if (colorSelected == 0) 
 		{

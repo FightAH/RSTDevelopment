@@ -36,6 +36,10 @@ namespace Completed
 		protected override void Start ()
 		{
             //Set restart button to false.
+            if (restartButton == null)
+            {
+                restartButton = GameObject.Find("RestartButton");
+            }
             restartButton.SetActive(false);
 
 			//Get a component reference to the Player's animator component
@@ -63,8 +67,12 @@ namespace Completed
 		
 		private void Update ()
 		{
-			//Set the text of shielded and food.
-			shieldedText.text = "Shielded: " + shielded;
+            //Set the text of shielded and food.
+            if (shieldedText != null)
+            {
+                shieldedText = GameObject.Find("Canvas/ShieldedText").GetComponent<Text>();
+            }
+            shieldedText.text = "Shielded: " + shielded;
             foodText.text = "Food: " + food;
             //If it's not the player's turn, exit the function.
             if (!GameManager.instance.playersTurn) return;
